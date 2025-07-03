@@ -77,12 +77,92 @@
       </div>
     </div>
   </section>
-
+  <section class="team-section">
+    <!-- Team Start -->
+    <div class="team">
+      <div class="container">
+        <div class="section-header text-center">
+          <h2 style="font-family: 'Pacifico', cursive;" >Nuestros Maestros Chefs</h2>
+        </div>
+        <div class="row">
+          <div class="col-lg-3 col-md-6">
+            <div class="team-item">
+              <div class="team-img">
+                <img src="@/assets/img/team-1.jpg" class="artists-image img-fluid" />
+                <div class="team-social">
+                  <a href=""><i class="fab fa-twitter"></i></a>
+                  <a href=""><i class="fab fa-facebook-f"></i></a>
+                  <a href=""><i class="fab fa-linkedin-in"></i></a>
+                  <a href=""><i class="fab fa-instagram"></i></a>
+                </div>
+              </div>
+              <div class="team-text" >
+                <h2 style="color: black">Carlos Ramírez</h2>
+                <p style="color: white">CEO, Cofundador</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="team-item">
+              <div class="team-img">
+                <img src="@/assets/img/team-2.jpg" class="artists-image img-fluid" />
+                <div class="team-social">
+                  <a href=""><i class="fab fa-twitter"></i></a>
+                  <a href=""><i class="fab fa-facebook-f"></i></a>
+                  <a href=""><i class="fab fa-linkedin-in"></i></a>
+                  <a href=""><i class="fab fa-instagram"></i></a>
+                </div>
+              </div>
+              <div class="team-text">
+                <h2 style="color: black">Mario Fernández</h2>
+                <p style="color: white">Chef Ejecutivo</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="team-item">
+              <div class="team-img">
+                <img src="@/assets/img/team-3.jpg" class="artists-image img-fluid" />
+                <div class="team-social">
+                  <a href=""><i class="fab fa-twitter"></i></a>
+                  <a href=""><i class="fab fa-facebook-f"></i></a>
+                  <a href=""><i class="fab fa-linkedin-in"></i></a>
+                  <a href=""><i class="fab fa-instagram"></i></a>
+                </div>
+              </div>
+              <div class="team-text">
+                <h2 style="color: black">Juan Pérez</h2>
+                <p style="color: white">Chef de Cocina</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="team-item">
+              <div class="team-img">
+                <img src="@/assets/img/team-4.jpg" class="artists-image img-fluid" />
+                <div class="team-social">
+                  <a href=""><i class="fab fa-twitter"></i></a>
+                  <a href=""><i class="fab fa-facebook-f"></i></a>
+                  <a href=""><i class="fab fa-linkedin-in"></i></a>
+                  <a href=""><i class="fab fa-instagram"></i></a>
+                </div>
+              </div>
+              <div class="team-text">
+                <h2 style="color: black">Lucio Gómez</h2>
+                <p style="color: white">Jefe de Partida</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Team End -->
+  </section>
   <section class="artists-section section-padding" id="section_4">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-12 text-center">
-          <h2 class="mb-4" >Restaurante</h2>
+          <h2 class="mb-4" style="font-family: 'Pacifico', cursive;" >Restaurante</h2>
         </div>
 
         <div class="col-lg-5 col-12">

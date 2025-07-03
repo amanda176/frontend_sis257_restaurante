@@ -71,7 +71,6 @@ onMounted(() => {
               <th scope="col" style="color: #e49e48">N°</th>
               <th scope="col" style="color: #e49e48">Orden de Creacion</th>
               <th scope="col" style="color: #e49e48">Nombre del Platillo</th>
-              <th scope="col" style="color: #e49e48">url del Platillo</th>
               <th scope="col" style="color: #e49e48">Precio</th>
               <th scope="col" style="color: #e49e48">Tiempo de Preparación (min)</th>
               <th scope="col" style="color: #e49e48">Platillos Disponibles</th>
@@ -85,7 +84,6 @@ onMounted(() => {
               <!--cuando el intex comienza en 0 le damos mas 1-->
               <td align="center" style="color: #f8cb2e">{{ platillo.id }}</td>
               <td style="color: #f8cb2e">{{ platillo.nombre }}</td>
-              <td style="color: #f8cb2e">{{ platillo.urlPlatillo }}</td>
               <td style="color: #f8cb2e">{{ platillo.precio }}</td>
               <td style="color: #f8cb2e">{{ platillo.tiempo_preparacion }}</td>
               <td style="color: #f8cb2e">{{ platillo.stock }}</td>

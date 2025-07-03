@@ -19,6 +19,7 @@ const props = defineProps<{
 }>()
 
 const ENDPOINT = props.ENDPOINT_API ?? ''
+const id = router.currentRoute.value.params['id']
 
 const nombre = ref('')
 const urlPlatillo = ref('')

@@ -18,29 +18,28 @@ const props = defineProps<{
 }>()
 
 const ENDPOINT = props.ENDPOINT_API ?? ''
-const id = router.currentRoute.value.params['id']
 const nombre = ref('')
 const urlPlatillo = ref('')
 const precio = ref(0)
 const tiempoPreparacion = ref('')
 const stock = ref(0)
 const idCategoriaPlatillo = ref('')
+const id = router.currentRoute.value.params['id']
 
+//Se debe editar el precio si o si 
 async function getPlatillo() {
-  await http.get(`${ENDPOINT}/${id}`).then((res) => {
-    const p = res.data
-    nombre.value = p.nombre
-    urlPlatillo.value = p.urlPlatillo
-    precio.value = p.precio
-    tiempoPreparacion.value = p.tiempo_preparacion
-    stock.value = p.stock
-    idCategoriaPlatillo.value = p.idCategoriaPlatillo
+  await http.get(`${ENDPOINT}/${id}`).then((response) => {
+    ; (nombre.value = response.data.nombre),
+      (urlPlatillo.value = response.data.urlPlatillo),
+      (precio.value = response.data.precio),
+      (tiempoPreparacion.value = response.data.tiempoPreparacion),
+      (stock.value = response.data.stock),
+      (idCategoriaPlatillo.value = response.data.idCategoriaPlatillo)
   })
 }
-
 async function editarPlatillo() {
   await http
-    .put(`${ENDPOINT}/${id}`, {
+    .patch(`${ENDPOINT}/${id}`, {
       nombre: nombre.value,
       urlPlatillo: urlPlatillo.value,
       precio: precio.value,
@@ -49,10 +48,6 @@ async function editarPlatillo() {
       idCategoriaPlatillo: idCategoriaPlatillo.value
     })
     .then(() => router.push('/platillos'))
-    .catch(err => {
-      console.error('Error al editar platillo:', err)
-      alert('Error al editar platillo. Revisa la consola.')
-    })
 }
 
 function goBack() {
@@ -67,23 +62,22 @@ onMounted(() => {
 <template>
   <br /><br /><br />
   <div class="container">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <RouterLink to="/">Inicio</RouterLink>
-        </li>
-        <li class="breadcrumb-item">
-          <RouterLink to="/platillos">Platillos</RouterLink>
-        </li>
-        <li class="breadcrumb-item active" aria-current="page" style="color: black">Editar Platillo</li>
-      </ol>
-    </nav>
-
     <div class="find-us">
       <div class="row">
         <div class="col-md-12">
           <div class="section-heading">
-            <h2>EDITAR DATOS DEL PLATILLOS</h2>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <RouterLink to="/">Inicio</RouterLink>
+                </li>
+                <li class="breadcrumb-item">
+                  <RouterLink to="/platillos">Platillos</RouterLink>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Editar</li>
+              </ol>
+            </nav>
+            <h2>ACTUALIZAR DATOS DEL PLATILLO</h2>
           </div>
         </div>
       </div>

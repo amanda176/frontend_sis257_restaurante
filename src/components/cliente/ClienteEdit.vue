@@ -6,14 +6,14 @@ import router from '@/router'
 const id = router.currentRoute.value.params['id']
 
 const cedula_identidad = ref('')
-const nombre_completo = ref('')
+const nombreCompleto = ref('')
 const celular = ref('')
 
 async function obtenerCliente() {
   try {
     const response = await http.get(`clientes/${id}`)
     cedula_identidad.value = response.data.cedula_identidad
-    nombre_completo.value = response.data.nombre_completo
+    nombreCompleto.value = response.data.nombreCompleto
     celular.value = response.data.celular
   } catch (error) {
     console.error('Error al cargar cliente:', error)
@@ -25,7 +25,7 @@ async function actualizarCliente() {
   try {
     await http.put(`clientes/${id}`, {
       cedula_identidad: cedula_identidad.value,
-      nombre_completo: nombre_completo.value,
+      nombreCompleto: nombreCompleto.value,
       celular: celular.value
     })
     router.push('/clientes')
@@ -62,7 +62,7 @@ onMounted(() => {
         <input
           type="text"
           class="form-control"
-          v-model="nombre_completo"
+          v-model="nombreCompleto"
           placeholder="Nombre"
           required
         />

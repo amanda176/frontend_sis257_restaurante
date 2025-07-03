@@ -52,7 +52,7 @@ onMounted(() => getClientes())
           >
             <td style="color: #f8cb2e">{{ index + 1 }}</td>
             <td style="color: #f8cb2e">{{ cliente.cedula_identidad }}</td>
-            <td style="color: #f8cb2e">{{ cliente.nombre_completo }}</td>
+            <td style="color: #f8cb2e">{{ cliente.nombreCompleto }}</td>
             <td style="color: #f8cb2e">{{ cliente.celular }}</td>
             <td>
               <button class="btn text-success" @click="editar(cliente.id)">

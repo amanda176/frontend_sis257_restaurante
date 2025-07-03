@@ -4,14 +4,14 @@ import http from '@/plugins/axios'
 import router from '@/router'
 
 const cedula_identidad = ref('')
-const nombre_completo = ref('')
+const nombreCompleto = ref('')
 const celular = ref('')
 
 async function crearCliente() {
   try {
     await http.post('clientes', {
       cedula_identidad: cedula_identidad.value,
-      nombre_completo: nombre_completo.value,
+      nombreCompleto: nombreCompleto.value,
       celular: celular.value
     })
     router.push('/clientes')
@@ -44,7 +44,7 @@ function goBack() {
         <input
           type="text"
           class="form-control"
-          v-model="nombre_completo"
+          v-model="nombreCompleto"
           placeholder="Nombre"
           required
         />

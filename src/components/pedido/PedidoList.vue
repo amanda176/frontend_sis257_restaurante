@@ -3,15 +3,23 @@ import type { Pedido } from '@/models/pedido'
 import { ref, onMounted, computed } from 'vue'
 import http from '@/plugins/axios'
 import router from '@/router'
+import { useAuthStore } from '@/stores/index'
+const authStore = useAuthStore()
 
-const ENDPOINT = 'pedidos'
-const pedidos = ref<Pedido[]>([])
+const props = defineProps<{
+  //esto se copia 7-11
+  ENDPOINT_API: string //variable que vien del view/platillo
+}>()
+
+const ENDPOINT = props.ENDPOINT_API ?? ''
+var pedidos = ref<Pedido[]>([]) //creamos la variable plural quie tomara loscalores de models/platillos
+
 const busqueda = ref('')
 
 const pedidosFiltrados = computed(() => {
   return pedidos.value.filter(p => {
     const texto = busqueda.value.toLowerCase()
-    const nombre = p.cliente?.nombre_completo?.toLowerCase() || ''
+    const nombre = p.cliente?.nombreCompleto?.toLowerCase() || ''
     const fecha = new Date(p.fecha_creacion).toLocaleDateString('es-BO').toLowerCase()
     return nombre.includes(texto) || fecha.includes(texto)
   })
@@ -74,7 +82,7 @@ function cerrarModal() {
   <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h2 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Lista de Pedidos</h2>
-      <RouterLink to="/pedido/crear" class="btn btn-primary">
+      <RouterLink to="/pedidos/crear" class="btn btn-primary">
         <font-awesome-icon icon="fa-solid fa-plus" /> Nuevo Pedido
       </RouterLink>
     </div>
@@ -95,8 +103,8 @@ function cerrarModal() {
         <tbody>
           <tr v-for="(pedido, index) in pedidosFiltrados" :key="pedido.id" style="background-color: black">
             <td style="color: #f8cb2e">{{ index + 1 }}</td>
-            <td style="color: #f8cb2e">{{ pedido.cliente?.nombre_completo }}</td>
-            <td style="color: #f8cb2e">{{ pedido.direccion?.direccion || '-' }}</td>
+            <td style="color: #f8cb2e">{{ pedido.clientes.nombreCompleto }}</td>
+            <td style="color: #f8cb2e">{{ pedido.direcciones.direccion }}</td>
             <td style="color: #f8cb2e">{{ formatFecha(pedido.fecha_creacion) }}</td>
             <td style="color: #f8cb2e">Bs {{ pedido.total }}</td>
             <td>
@@ -125,7 +133,7 @@ function cerrarModal() {
     <div v-if="mostrarModal && pedidoSeleccionado" class="modal-backdrop">
       <div class="modal-content p-4 bg-white rounded shadow-lg">
         <h5>Detalle del Pedido</h5>
-        <p><strong>Cliente:</strong> {{ pedidoSeleccionado.cliente?.nombre_completo }}</p>
+        <p><strong>Cliente:</strong> {{ pedidoSeleccionado.cliente?.nombreCompleto }}</p>
         <p><strong>CI:</strong> {{ pedidoSeleccionado.cliente?.cedula_identidad }}</p>
         <p><strong>Tipo:</strong> {{ pedidoSeleccionado.direccion ? 'Delivery' : 'Local' }}</p>
         <p v-if="pedidoSeleccionado.direccion"><strong>Dirección:</strong> {{ pedidoSeleccionado.direccion.direccion }}</p>

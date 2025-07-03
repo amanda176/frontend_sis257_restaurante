@@ -19,7 +19,7 @@ const nombreCompleto = ref('')
 
 const clientesFiltrados = computed(() =>
   clientes.value.filter(c =>
-    `${c.cedula_identidad} ${c.nombre_completo}`.toLowerCase().includes(filtroCliente.value.toLowerCase())
+    `${c.cedula_identidad} ${c.nombreCompleto}`.toLowerCase().includes(filtroCliente.value.toLowerCase())
   )
 )
 
@@ -42,8 +42,8 @@ const pagoValido = computed(() => montoRecibido.value >= total.value)
 function seleccionarClienteDesdeBusqueda(cliente: Cliente) {
   clienteExistente.value = cliente
   ci.value = cliente.cedula_identidad
-  nombreCompleto.value = cliente.nombre_completo
-  filtroCliente.value = `${cliente.cedula_identidad} - ${cliente.nombre_completo}`
+  nombreCompleto.value = cliente.nombreCompleto
+  filtroCliente.value = `${cliente.cedula_identidad} - ${cliente.nombreCompleto}`
   mostrarDropdown.value = false
 }
 
@@ -199,7 +199,7 @@ async function crearPedido() {
             :key="c.id"
             @click="seleccionarClienteDesdeBusqueda(c)"
           >
-            {{ c.cedula_identidad }} - {{ c.nombre_completo }}
+            {{ c.cedula_identidad }} - {{ c.nombreCompleto }}
           </li>
           <li v-if="clientesFiltrados.length === 0" class="list-group-item text-muted">
             Cliente no encontrado. Ingrese manualmente los datos.
@@ -249,7 +249,7 @@ async function crearPedido() {
 
       <!-- Fecha -->
       <div class="form-floating mb-3">
-        <input type="date" class="form-control" v-model="fecha" :max="hoy" required />
+        <input type="date" class="form-control" v-model="fecha" :max="hoy" :min="hoy" required />
         <label>Fecha</label>
       </div>
 

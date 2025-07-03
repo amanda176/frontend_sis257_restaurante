@@ -6,6 +6,10 @@ import type { Cliente } from '@/models/cliente'
 import type { Platillo } from '@/models/platillo'
 import type { Direccion } from '@/models/direccion'
 
+const platilloSeleccionado = computed(() =>
+  platillos.value.find(p => p.id === +platillo_id.value)
+)
+
 const hoy = new Date().toISOString().split('T')[0]
 const clientes = ref<Cliente[]>([])
 const platillos = ref<Platillo[]>([])
@@ -179,26 +183,12 @@ async function crearPedido() {
       <!-- Cliente -->
       <div class="mb-3 position-relative autocomplete-container">
         <label class="form-label fw-bold">Buscar Cliente</label>
-        <input
-          type="text"
-          class="form-control"
-          v-model="filtroCliente"
-          @focus="mostrarDropdown = true"
-          @input="mostrarDropdown = true"
-          autocomplete="off"
-          placeholder="CI o Nombre del cliente"
-        />
-        <ul
-          v-if="mostrarDropdown"
-          class="list-group position-absolute w-100 z-3"
-          style="max-height: 200px; overflow-y: auto"
-        >
-          <li
-            class="list-group-item list-group-item-action"
-            v-for="c in clientesFiltrados"
-            :key="c.id"
-            @click="seleccionarClienteDesdeBusqueda(c)"
-          >
+        <input type="text" class="form-control" v-model="filtroCliente" @focus="mostrarDropdown = true"
+          @input="mostrarDropdown = true" autocomplete="off" placeholder="CI o Nombre del cliente" />
+        <ul v-if="mostrarDropdown" class="list-group position-absolute w-100 z-3"
+          style="max-height: 200px; overflow-y: auto">
+          <li class="list-group-item list-group-item-action" v-for="c in clientesFiltrados" :key="c.id"
+            @click="seleccionarClienteDesdeBusqueda(c)">
             {{ c.cedula_identidad }} - {{ c.nombreCompleto }}
           </li>
           <li v-if="clientesFiltrados.length === 0" class="list-group-item text-muted">
@@ -238,13 +228,8 @@ async function crearPedido() {
           <option v-for="d in direcciones" :key="d.id" :value="d.id">{{ d.direccion }}</option>
           <option value="nueva">Nueva dirección</option>
         </select>
-        <input
-          v-if="direccionSeleccionada === 'nueva'"
-          v-model="nuevaDireccion"
-          type="text"
-          class="form-control mt-2"
-          placeholder="Ingrese nueva dirección"
-        />
+        <input v-if="direccionSeleccionada === 'nueva'" v-model="nuevaDireccion" type="text" class="form-control mt-2"
+          placeholder="Ingrese nueva dirección" />
       </div>
 
       <!-- Fecha -->
@@ -253,7 +238,13 @@ async function crearPedido() {
         <label>Fecha</label>
       </div>
 
-      <!-- Platillos -->
+      <!-- Imagen del Platillo Seleccionado -->
+      <div v-if="platilloSeleccionado?.urlPlatillo" class="mb-3 text-center">
+        <img :src="platilloSeleccionado.urlPlatillo" alt="Imagen del platillo" class="img-fluid rounded"
+          style="max-height: 200px; object-fit: cover;" />
+      </div>
+
+      <!-- Selector de Platillo -->
       <div class="form-floating mb-3">
         <select class="form-select" v-model="platillo_id" @change="actualizarStock">
           <option value="" disabled>Seleccione un platillo</option>
@@ -265,25 +256,15 @@ async function crearPedido() {
       </div>
 
       <div v-if="stockDisponible > 0" class="form-floating mb-3">
-        <input
-          type="number"
-          class="form-control"
-          v-model.number="cantidad"
-          :max="stockDisponible"
-          min="1"
-        />
+        <input type="number" class="form-control" v-model.number="cantidad" :max="stockDisponible" min="1" />
         <label>Cantidad (máx: {{ stockDisponible }})</label>
       </div>
 
-      <div v-else class="alert alert-danger p-2">Este platillo ya no tiene stock disponible.</div>
+
 
       <div class="mb-3">
-        <button
-          type="button"
-          class="btn btn-secondary btn-sm"
-          @click="agregarDetalle"
-          :disabled="!platillo_id || cantidad > stockDisponible"
-        >
+        <button type="button" class="btn btn-secondary btn-sm" @click="agregarDetalle"
+          :disabled="!platillo_id || cantidad > stockDisponible">
           Agregar al Pedido
         </button>
       </div>
@@ -292,12 +273,7 @@ async function crearPedido() {
       <div v-if="detalles.length" class="mb-4">
         <h5>Detalle del Pedido</h5>
         <ul class="fw-normal">
-          <li
-            v-for="(d, index) in detalles"
-            :key="index"
-            class="mb-1"
-            style="color: black; font-weight: bold"
-          >
+          <li v-for="(d, index) in detalles" :key="index" class="mb-1" style="color: black; font-weight: bold">
             {{ d.platillo.nombre }} x {{ d.cantidad }} = Bs {{ d.platillo.precio * d.cantidad }}
             <button @click="quitarDetalle(index)" class="btn btn-sm btn-danger ms-2">X</button>
           </li>
@@ -321,11 +297,7 @@ async function crearPedido() {
 
       <!-- Botón -->
       <div class="text-center mt-4">
-        <button
-          type="submit"
-          class="btn btn-primary btn-lg px-4"
-          :disabled="!pagoValido || detalles.length === 0"
-        >
+        <button type="submit" class="btn btn-primary btn-lg px-4" :disabled="!pagoValido || detalles.length === 0">
           <font-awesome-icon icon="fa-solid fa-floppy-disk" class="me-2" />
           Guardar Pedido
         </button>
@@ -340,6 +312,7 @@ async function crearPedido() {
   z-index: 999;
   position: relative;
 }
+
 .z-3 {
   z-index: 1050;
 }

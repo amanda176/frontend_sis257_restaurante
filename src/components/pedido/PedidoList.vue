@@ -82,7 +82,7 @@ function cerrarModal() {
   <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h2 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Lista de Pedidos</h2>
-      <RouterLink to="/pedidos/crear" class="btn btn-primary">
+      <RouterLink to="/pedido/crear" class="btn btn-primary">
         <font-awesome-icon icon="fa-solid fa-plus" /> Nuevo Pedido
       </RouterLink>
     </div>

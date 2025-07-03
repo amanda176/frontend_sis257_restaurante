@@ -5,5 +5,5 @@ export interface Empleado {
   segundo_apellido: string
   cedula_identidad: string
   direccion: string
-  celular: string
+  celular: number
 }

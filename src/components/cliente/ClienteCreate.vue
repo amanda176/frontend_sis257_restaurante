@@ -64,6 +64,7 @@ function goBack() {
           <input type="number" class="form-control" v-model="celular" placeholder="Celular" required />
           <label>Celular</label>
         </div>
+        
         <div class="text-center mt-3">
           <button type="submit" class="btn btn-primary btn-lg">
             <font-awesome-icon icon="fa-solid fa-floppy-disk" /> Crear Categoria

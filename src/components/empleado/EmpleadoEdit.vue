@@ -1,46 +1,48 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { ref, onMounted } from 'vue'
 import http from '@/plugins/axios'
+import router from '@/router'
 
-const ENDPOINT = 'empleados'
-const route = useRoute()
-const router = useRouter()
+const props = defineProps<{
+  ENDPOINT_API: string
+}>()
 
-const id = Number(route.params.id)
-
+const ENDPOINT = props.ENDPOINT_API ?? ''
 const cedula_identidad = ref('')
 const celular = ref('')
 const nombres = ref('')
 const primer_apellido = ref('')
 const segundo_apellido = ref('')
 const direccion = ref('')
+const id = router.currentRoute.value.params['id']
+
 
 async function getEmpleado() {
-  const data = await http.get(`${ENDPOINT}/${id}`).then(res => res.data)
-  cedula_identidad.value = data.cedula_identidad
-  celular.value = data.celular
-  nombres.value = data.nombres
-  primer_apellido.value = data.primer_apellido
-  segundo_apellido.value = data.segundo_apellido
-  direccion.value = data.direccion
+  await http.get(`${ENDPOINT}/${id}`).then((response) => {
+    ; (cedula_identidad.value = response.data.cedula_identidad),
+      (nombres.value = response.data.nombres),
+      (celular.value = response.data.celular),
+      (primer_apellido.value = response.data.primer_apellido),
+      (segundo_apellido.value = response.data.segundo_apellido),
+      (direccion.value = response.data.direccion)
+  })
 }
 
 async function actualizarEmpleado() {
-  try {
-    await http.put(`${ENDPOINT}/${id}`, {
-      cedula_identidad: cedula_identidad.value,
-      celular: celular.value,
-      nombres: nombres.value,
-      primer_apellido: primer_apellido.value,
-      segundo_apellido: segundo_apellido.value,
-      direccion: direccion.value,
+  await http
+    .patch(`${ENDPOINT}/${id}`, {
+  cedula_identidad: cedula_identidad.value,
+  celular: celular.value,
+  nombres: nombres.value,
+  primer_apellido: primer_apellido.value,
+  segundo_apellido: segundo_apellido.value,
+  direccion: direccion.value,
 })
-    router.push('/empleados')
-  } catch (error) {
-    console.error('Error al actualizar:', error)
-    alert('No se pudo actualizar el empleado')
-  }
+    .then(() => router.push('/empleados'))
+}
+
+function goBack() {
+  router.go(-1)
 }
 
 onMounted(() => {
@@ -50,34 +52,67 @@ onMounted(() => {
 
 
 <template>
-  <div class="container mt-4">
-    <h2>Editar Empleado</h2>
-    <form @submit.prevent="actualizarEmpleado">
-      <div class="form-floating mb-2">
-        <input class="form-control" v-model="cedula_identidad" required />
-        <label>Cédula de Identidad</label>
+  <br /><br /><br />
+  <div class="container">
+    <div class="find-us">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-heading">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <RouterLink to="/">Inicio</RouterLink>
+                </li>
+                <li class="breadcrumb-item">
+                  <RouterLink to="/empleados">Empleados</RouterLink>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Crear</li>
+              </ol>
+            </nav>
+            <h2>ACTULIZAR EMPLEADO</h2>
+          </div>
+        </div>
       </div>
-      <div class="form-floating mb-2">
-        <input class="form-control" v-model="celular" required />
-        <label>Celular</label>
-      </div>
-      <div class="form-floating mb-2">
-        <input class="form-control" v-model="nombres" required />
-        <label>Nombres</label>
-      </div>
-      <div class="form-floating mb-2">
-        <input class="form-control" v-model="primer_apellido" required />
-        <label>Primer Apellido</label>
-      </div>
-      <div class="form-floating mb-2">
-        <input class="form-control" v-model="segundo_apellido" />
-        <label>Segundo Apellido</label>
-      </div>
-      <div class="form-floating mb-2">
-        <input class="form-control" v-model="direccion" />
-        <label>Dirección</label>
-      </div>
-      <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-    </form>
+    </div>
+
+    <div class="row">
+      <form @submit.prevent="actualizarEmpleado">
+        <div class="form-floating mb-3">
+          <input class="form-control" v-model="cedula_identidad" required />
+          <label>Cédula de Identidad</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="number" class="form-control" v-model="celular" required />
+          <label>Celular</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input class="form-control" v-model="nombres" required />
+          <label>Nombres</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input class="form-control" v-model="primer_apellido" required />
+          <label>Primer Apellido</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input class="form-control" v-model="segundo_apellido" />
+          <label>Segundo Apellido</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input class="form-control" v-model="direccion" />
+          <label>Dirección</label>
+        </div>
+
+        <div class="text-center mt-3">
+          <button type="submit" class="btn btn-primary btn-lg">
+            <font-awesome-icon icon="fa-solid fa-floppy-disk" /> Actulizar Empleado
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="text-left">
+      <button class="btn btn-success" @click="goBack">Volver</button>
+    </div>
   </div>
 </template>
+
+<style></style>

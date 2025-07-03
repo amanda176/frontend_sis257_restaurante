@@ -84,6 +84,7 @@ onMounted(() => getClientes())
                 <button class="btn text-danger" @click="eliminar(cliente.id)">
                   <font-awesome-icon icon="fa-solid fa-trash" />
                 </button>
+                
               </td>
             </tr>
           </tbody>

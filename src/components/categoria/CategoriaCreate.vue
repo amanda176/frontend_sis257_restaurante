@@ -8,20 +8,16 @@ const props = defineProps<{
 }>()
 
 const ENDPOINT = props.ENDPOINT_API ?? ''
-const nombreRepartidor = ref('')
-const carnetIdentidad = ref('')
-const fechaEdad = ref('')
-const fechaIngreso = ref('')
+const nombre = ref('')
+const descripcion = ref('')
 
-async function crearRepartidor() {
+async function crearCategoria() {
   await http
     .post(ENDPOINT, {
-      nombreRepartidor: nombreRepartidor.value,
-      carnetIdentidad: carnetIdentidad.value,
-      fechaEdad: fechaEdad.value,
-      fechaIngreso: fechaIngreso.value
+      nombre: nombre.value,
+      descripcion: descripcion.value
     })
-    .then(() => router.push('/repartidor'))
+    .then(() => router.push('/categoriaPlatillos'))
 }
 
 function goBack() {
@@ -42,59 +38,44 @@ function goBack() {
                   <RouterLink to="/">Inicio</RouterLink>
                 </li>
                 <li class="breadcrumb-item">
-                  <RouterLink to="/repartidor">Repartidor</RouterLink>
+                  <RouterLink to="/categoriaPlatillos">Categoria</RouterLink>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">Crear</li>
               </ol>
             </nav>
-            <h2>INSERTAR DATOS DEL REPARTIDOR</h2>
+            <h2>INSERTAR CATEGORIA DE PLATILLOS</h2>
           </div>
         </div>
       </div>
     </div>
 
     <div class="row">
-      <form @submit.prevent="crearRepartidor">
-        <!--cuando yo aprete guardar me llma al metodo crearRepartidor-->
+      <form @submit.prevent="crearCategoria">
+        <!--cuando yo aprete guardar me llma al metodo crearCategoria-->
         <div class="form-floating mb-3">
           <input
             type="text"
             class="form-control"
-            v-model="nombreRepartidor"
-            placeholder="NombreRepartidor"
+            v-model="nombre"
+            placeholder="nombre"
             required
           />
-          <label for="nombreRepartidor">Nombre Completo</label>
+          <label for="nombre">Nombre Completo</label>
         </div>
         <div class="form-floating mb-3">
           <input
             type="text"
             class="form-control"
-            v-model="carnetIdentidad"
-            placeholder="carnetIdentidad"
+            v-model="descripcion"
+            placeholder="descripcion"
             required
           />
-          <label for="carnetIdentidad">Carnet de Identidad</label>
-        </div>
-        <div class="form-floating mb-3">
-          <input type="Date" class="form-control" v-model="fechaEdad" placeholder="Edad" required />
-          <label for="fechaEdad">Fecha de Nacimiento</label>
-        </div>
-
-        <div class="form-floating mb-3">
-          <input
-            type="Date"
-            class="form-control"
-            v-model="fechaIngreso"
-            placeholder="Fecha de Ingreso"
-            required
-          />
-          <label for="fechaIngreso">Fecha de Ingreso a Trabajar</label>
+          <label for="descripcion">Descripción</label>
         </div>
 
         <div class="text-center mt-3">
           <button type="submit" class="btn btn-primary btn-lg">
-            <font-awesome-icon icon="fa-solid fa-floppy-disk" /> Crear Repartidor
+            <font-awesome-icon icon="fa-solid fa-floppy-disk" /> Crear Categoria
           </button>
         </div>
       </form>

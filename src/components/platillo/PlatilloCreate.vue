@@ -2,6 +2,17 @@
 import { ref, onMounted } from 'vue'
 import http from '@/plugins/axios'
 import router from '@/router'
+import type { Categoria } from '@/models/categoria'
+
+
+var categoria = ref<Categoria[]>([])
+async function getCategoria() {
+  categoria.value = await http.get('categoriaPlatillos').then((response) => response.data)
+}
+
+onMounted(() => {
+  getCategoria()
+})
 
 const props = defineProps<{
   ENDPOINT_API: string
@@ -10,39 +21,29 @@ const props = defineProps<{
 const ENDPOINT = props.ENDPOINT_API ?? ''
 
 const nombre = ref('')
+const urlPlatillo = ref('')
 const precio = ref(0)
-const tiempoPreparacion = ref(0)
-const disponibilidad = ref(0)
-const idCategoria = ref<number | null>(null)
-const categorias = ref<{ id: number; nombre: string }[]>([])
-
-async function getCategorias() {
-  categorias.value = await http.get('categoria_platillos').then(res => res.data)
-}
+const tiempoPreparacion = ref('')
+const stock = ref(0)
+const idCategoriaPlatillo = ref('')
 
 async function crearPlatillo() {
   await http
     .post(ENDPOINT, {
       nombre: nombre.value,
+      urlPlatillo: urlPlatillo.value,
       precio: precio.value,
-      stock: disponibilidad.value,
-      tiempo_preparacion: tiempoPreparacion.value.toString(),
-      id_categoria: idCategoria.value,
+      stock: stock.value,
+      tiempo_preparacion: tiempoPreparacion.value,
+      idCategoriaPlatillo: idCategoriaPlatillo.value
     })
     .then(() => router.push('/platillos'))
-    .catch(error => {
-      console.error('Error al crear platillo:', error)
-      alert('Error al crear platillo. Revisa los campos o la consola.')
-    })
 }
 
 function goBack() {
   router.go(-1)
 }
 
-onMounted(() => {
-  getCategorias()
-})
 </script>
 
 <template>
@@ -54,8 +55,12 @@ onMounted(() => {
           <div class="section-heading">
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
-                <li class="breadcrumb-item"><RouterLink to="/">Inicio</RouterLink></li>
-                <li class="breadcrumb-item"><RouterLink to="/platillos">Platillos</RouterLink></li>
+                <li class="breadcrumb-item">
+                  <RouterLink to="/">Inicio</RouterLink>
+                </li>
+                <li class="breadcrumb-item">
+                  <RouterLink to="/platillos">Platillos</RouterLink>
+                </li>
                 <li class="breadcrumb-item active" aria-current="page">Crear</li>
               </ol>
             </nav>
@@ -73,28 +78,32 @@ onMounted(() => {
         </div>
 
         <div class="form-floating mb-3">
+          <input type="text" class="form-control" v-model="urlPlatillo" placeholder="urlPlatillo" required />
+          <label for="urlPlatillo">Url Platillo</label>
+        </div>
+
+        <div class="form-floating mb-3">
           <input type="number" class="form-control" v-model="precio" placeholder="Precio" required />
           <label for="precio">Precio</label>
         </div>
 
         <div class="form-floating mb-3">
-          <input type="number" class="form-control" v-model="tiempoPreparacion" placeholder="Tiempo" required />
+          <input type="text" class="form-control" v-model="tiempoPreparacion" placeholder="Tiempo" required />
           <label for="tiempoPreparacion">Tiempo de Preparación</label>
         </div>
 
         <div class="form-floating mb-3">
-          <input type="number" class="form-control" v-model="disponibilidad" placeholder="Stock" required />
-          <label for="disponibilidad">Disponibilidad</label>
+          <input type="number" class="form-control" v-model="stock" placeholder="Stock" required />
+          <label for="stock">Stock</label>
         </div>
 
         <div class="form-floating mb-3">
-          <select class="form-select" v-model="idCategoria" required>
-            <option value="" disabled>Seleccione una categoría</option>
-            <option v-for="cat in categorias" :key="cat.id" :value="cat.id">
-              {{ cat.nombre }}
+          <select v-model="idCategoriaPlatillo" class="form-select">
+            <option v-for="categoria in categoria" :value="categoria.id">
+              {{ categoria.nombre }}
             </option>
           </select>
-          <label for="idCategoria">Categoría</label>
+          <label for="categoria">Nombre de la categoria</label>
         </div>
 
         <div class="text-center mt-3">

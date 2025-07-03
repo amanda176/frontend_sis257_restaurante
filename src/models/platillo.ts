@@ -1,8 +1,9 @@
 export interface Platillo {
   id: number
   nombre: string
+  urlPlatillo: string
   precio: number
   tiempo_preparacion: string
   stock: number
-  categoria?: { id: number, nombre?: string }
+  idCategoriaPlatillo: number
 }

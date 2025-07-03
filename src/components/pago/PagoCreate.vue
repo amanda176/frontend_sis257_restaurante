@@ -2,7 +2,7 @@
 import { onMounted, ref } from 'vue'
 import http from '@/plugins/axios'
 import router from '@/router'
-import type { Repartidor } from '@/models/repartidor'
+import type { Repartidor } from '@/models/categoria'
 
 var repartidores = ref<Repartidor[]>([])
 async function getRepartidor() {

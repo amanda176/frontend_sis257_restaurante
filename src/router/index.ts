@@ -66,15 +66,15 @@ const router = createRouter({
       ]
     },
     {
-      path: '/repartidor', //direccion del swagger
-      name: 'repartidor',
-      component: () => import('../views/RepartidorView.vue'),
+      path: '/categoriaPlatillos', //direccion del swagger
+      name: 'categoriaPlatillos',
+      component: () => import('../views/CategoriaView.vue'),
       children: [
-        { path: '', component: () => import('../components/repartidor/RepartidorList.vue') },
-        { path: 'crear', component: () => import('../components/repartidor/RepartidorCreate.vue') },
+        { path: '', component: () => import('../components/categoria/CategoriaList.vue') },
+        { path: 'crear', component: () => import('../components/categoria/CategoriaCreate.vue') },
         {
           path: 'editar/:id',
-          component: () => import('../components/repartidor/RepartidorEdit.vue')
+          component: () => import('../components/categoria/CategoriaEdit.vue')
         }
       ]
     },

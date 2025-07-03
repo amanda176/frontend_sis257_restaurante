@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Platillo } from '@/models/platillo'
 import { onMounted, ref } from 'vue'
 import http from '@/plugins/axios'
 import router from '@/router'
+import type { Platillo } from '@/models/platillo'
 import { useAuthStore } from '@/stores/index'
 const authStore = useAuthStore()
 
@@ -56,8 +56,8 @@ onMounted(() => {
               <div class="col-12"></div>
             </div>
             <RouterLink to="/platillos/crear" class="btn btn-success mb-3">
-  <font-awesome-icon icon="fa-solid fa-plus" /> Crear Nuevo Platillo
-</RouterLink>
+              <font-awesome-icon icon="fa-solid fa-plus" /> Crear Nuevo Platillo
+            </RouterLink>
           </div>
         </div>
       </div>
@@ -71,6 +71,7 @@ onMounted(() => {
               <th scope="col" style="color: #e49e48">N°</th>
               <th scope="col" style="color: #e49e48">Orden de Creacion</th>
               <th scope="col" style="color: #e49e48">Nombre del Platillo</th>
+              <th scope="col" style="color: #e49e48">url del Platillo</th>
               <th scope="col" style="color: #e49e48">Precio</th>
               <th scope="col" style="color: #e49e48">Tiempo de Preparación (min)</th>
               <th scope="col" style="color: #e49e48">Platillos Disponibles</th>
@@ -78,15 +79,13 @@ onMounted(() => {
             </tr>
           </thead>
           <tbody>
-              <tr v-for="(platillo, index) in platillos"
-              :key="platillo.id"
-              style="background-color: black"
-            >
+            <tr v-for="(platillo, index) in platillos" :key="platillo.id" style="background-color: black">
               <!--el singular solo es una variable-->
               <th scope="row" style="color: #f8cb2e">{{ index + 1 }}</th>
               <!--cuando el intex comienza en 0 le damos mas 1-->
               <td align="center" style="color: #f8cb2e">{{ platillo.id }}</td>
               <td style="color: #f8cb2e">{{ platillo.nombre }}</td>
+              <td style="color: #f8cb2e">{{ platillo.urlPlatillo }}</td>
               <td style="color: #f8cb2e">{{ platillo.precio }}</td>
               <td style="color: #f8cb2e">{{ platillo.tiempo_preparacion }}</td>
               <td style="color: #f8cb2e">{{ platillo.stock }}</td>
@@ -124,6 +123,8 @@ onMounted(() => {
       <div v-for="p in platillos" class="col-md-4">
         <div class="product-item">
           <a href="#">
+            <img :src="p.urlPlatillo" alt="Platillo"
+              style="width: 232px; height: 232px; border: 1px solid black; border-radius: 10px;">
           </a>
           <div v-if="p.stock >= 1">
             <div class="down-content">

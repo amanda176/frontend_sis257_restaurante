@@ -118,20 +118,19 @@ const router = createRouter({
       ]
     },
 
-   {
-  path: '/empleados',
-  name: 'empleados',
-  component: () => import('@/views/EmpleadoView.vue'),
-  children: [
-    { path: '', component: () => import('@/components/empleado/EmpleadoList.vue') },
-    { path: 'crear', component: () => import('@/components/empleado/EmpleadoCreate.vue') },
     {
-      path: 'editar/:id',
-      component: () => import('@/components/empleado/EmpleadoEdit.vue')
+      path: '/empleados',
+      name: 'empleados',
+      component: () => import('@/views/EmpleadoView.vue'),
+      children: [
+        { path: '', component: () => import('@/components/empleado/EmpleadoList.vue') },
+        { path: 'crear', component: () => import('@/components/empleado/EmpleadoCreate.vue') },
+        {
+          path: 'editar/:id',
+          component: () => import('@/components/empleado/EmpleadoEdit.vue')
+        }
+      ]
     }
-  ]
-},
-
   ]
 })
 

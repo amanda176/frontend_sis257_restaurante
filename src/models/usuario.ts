@@ -1,7 +1,8 @@
 export interface Usuario {
   id: number
-  usuario_login: string
+  usuario: string
   clave: string
+  email: string
   rol: string
   empleado: {
     id: number

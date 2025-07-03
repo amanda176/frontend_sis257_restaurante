@@ -53,6 +53,7 @@ onMounted(() => {
           <tr style="background-color: black">
             <th style="color: #e49e48">N°</th>
             <th style="color: #e49e48">Usuario</th>
+            <th style="color: #e49e48">Email</th>
             <th style="color: #e49e48">Rol</th>
             <th style="color: #e49e48">Empleado</th>
             <th style="color: #e49e48">Acciones</th>
@@ -61,7 +62,8 @@ onMounted(() => {
         <tbody>
           <tr v-for="(usuario, index) in usuarios" :key="usuario.id" style="background-color: black">
             <th style="color: #f8cb2e">{{ index + 1 }}</th>
-            <td style="color: #f8cb2e">{{ usuario.usuario_login }}</td>
+            <td style="color: #f8cb2e">{{ usuario.usuario }}</td>
+            <td style="color: #f8cb2e">{{ usuario.email }}</td>
             <td style="color: #f8cb2e">{{ usuario.rol }}</td>
             <td style="color: #f8cb2e">
               {{ usuario.empleado?.nombres }} {{ usuario.empleado?.primer_apellido }} {{ usuario.empleado?.segundo_apellido }}

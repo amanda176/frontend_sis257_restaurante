@@ -5,8 +5,9 @@ import router from '@/router'
 
 const id = router.currentRoute.value.params['id']
 
-const usuario_login = ref('')
+const usuario = ref('')
 const clave = ref('')
+const email = ref('')
 const rol = ref('')
 const empleado_id = ref<number | null>(null)
 
@@ -16,8 +17,9 @@ const empleados = ref<{ id: number; nombres: string; primer_apellido: string }[]
 async function cargarUsuario() {
   const res = await http.get(`usuarios/${id}`)
   const data = res.data
-  usuario_login.value = data.usuario_login
+  usuario.value = data.usuario
   clave.value = data.clave
+  email.value = data.email
   rol.value = data.rol
   empleado_id.value = data.empleado?.id
 }
@@ -28,8 +30,9 @@ async function cargarEmpleados() {
 
 async function editarUsuario() {
   await http.put(`usuarios/${id}`, {
-    usuario_login: usuario_login.value,
+    usuario: usuario.value,
     clave: clave.value,
+    email: email.value,
     rol: rol.value,
     empleado: { id: empleado_id.value }
   }).then(() => router.push('/usuarios'))
@@ -55,13 +58,18 @@ onMounted(() => {
 
     <form @submit.prevent="editarUsuario">
       <div class="form-floating mb-3">
-        <input type="text" class="form-control" v-model="usuario_login" placeholder="Usuario" required />
+        <input type="text" class="form-control" v-model="usuario" placeholder="Usuario" required />
         <label>Usuario</label>
       </div>
 
       <div class="form-floating mb-3">
         <input type="password" class="form-control" v-model="clave" placeholder="Contraseña" required />
         <label>Contraseña</label>
+      </div>
+
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" v-model="email" placeholder="Email" required />
+        <label>Email</label>
       </div>
 
       <div class="form-floating mb-3">

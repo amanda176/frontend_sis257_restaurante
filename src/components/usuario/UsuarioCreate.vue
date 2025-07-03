@@ -3,8 +3,9 @@ import { onMounted, ref } from 'vue'
 import http from '@/plugins/axios'
 import router from '@/router'
 
-const usuario_login = ref('')
+const usuario = ref('')
 const clave = ref('')
+const email = ref('')
 const rol = ref('')
 const empleado_id = ref<number | null>(null)
 
@@ -13,8 +14,9 @@ const empleados = ref<{ id: number; nombres: string; primer_apellido: string }[]
 
 async function crearUsuario() {
   await http.post('usuarios', {
-    usuario_login: usuario_login.value,
+    usuario: usuario.value,
     clave: clave.value,
+    email: email.value,
     rol: rol.value,
     empleado: { id: empleado_id.value }
   }).then(() => router.push('/usuarios'))
@@ -33,8 +35,12 @@ onMounted(() => {
   <div class="container">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><RouterLink to="/">Inicio</RouterLink></li>
-        <li class="breadcrumb-item"><RouterLink to="/usuarios">Usuarios</RouterLink></li>
+        <li class="breadcrumb-item">
+          <RouterLink to="/">Inicio</RouterLink>
+        </li>
+        <li class="breadcrumb-item">
+          <RouterLink to="/usuarios">Usuarios</RouterLink>
+        </li>
         <li class="breadcrumb-item active" aria-current="page">Crear Usuario</li>
       </ol>
     </nav>
@@ -43,13 +49,18 @@ onMounted(() => {
 
     <form @submit.prevent="crearUsuario">
       <div class="form-floating mb-3">
-        <input type="text" class="form-control" v-model="usuario_login" placeholder="Usuario" required />
+        <input type="text" class="form-control" v-model="usuario" placeholder="Usuario" required />
         <label>Usuario</label>
       </div>
 
       <div class="form-floating mb-3">
         <input type="password" class="form-control" v-model="clave" placeholder="Contraseña" required />
         <label>Contraseña</label>
+      </div>
+
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" v-model="email" placeholder="Email" required />
+        <label>Email</label>
       </div>
 
       <div class="form-floating mb-3">

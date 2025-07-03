@@ -115,7 +115,7 @@ onMounted(() => {
         <div class="form-floating mb-3">
           <select v-model="idCliente" class="form-select">
             <option v-for="clientes in cliente" :value="clientes.id">
-              {{ clientes.nombreCliente }}
+              {{ clientes.nombreCompleto }}
             </option>
           </select>
           <label for="cliente">Nombre del Cliente</label>

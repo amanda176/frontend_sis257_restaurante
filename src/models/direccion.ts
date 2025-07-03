@@ -4,8 +4,5 @@ export interface Direccion {
   piso: string
   indicaciones: string
   estado: string
-  fecha_registro: string
-  cliente: {
-    nombreCliente: string
-  } | null;
+  idCliente: number
 }

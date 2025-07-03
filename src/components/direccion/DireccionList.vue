@@ -84,7 +84,7 @@ onMounted(() => {
               <!--el singular solo es una variable-->
               <th scope="row" style="color: #f8cb2e">{{ index + 1 }}</th>
               <!--cuando el intex comienza en 0 le damos mas 1-->
-              <td style="color: #f8cb2e">{{ direcciones.cliente?.nombreCliente }}</td>
+            <td style="color: #f8cb2e">{{ direcciones.clientes.nombreCompleto }}</td>
               <td style="color: #f8cb2e">{{ direcciones.direccion }}</td>
               <td style="color: #f8cb2e">{{ direcciones.piso }}</td>
               <td style="color: #f8cb2e">{{ direcciones.indicaciones }}</td>

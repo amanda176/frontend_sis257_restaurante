@@ -13,6 +13,7 @@ onMounted(() => {
   getClientes()
 })
 
+
 const props = defineProps<{
   ENDPOINT_API: string
 }>()
@@ -24,7 +25,7 @@ const indicaciones = ref('')
 const estado = ref('')
 const idCliente = ref('')
 
-async function crearDireccion() {
+async function crearValoracion() {
   await http
     .post(ENDPOINT, {
       direccion: direccion.value,
@@ -66,7 +67,7 @@ function goBack() {
     </div>
 
     <div class="row">
-      <form @submit.prevent="crearDireccion">
+      <form @submit.prevent="crearValoracion">
         <!--cuando yo aprete guardar me llma al metodo crearValoracion-->
         <div class="form-floating mb-3">
           <input
@@ -79,7 +80,13 @@ function goBack() {
           <label for="direccion">Dirección</label>
         </div>
         <div class="form-floating mb-3">
-          <input type="text" class="form-control" v-model="piso" placeholder="piso" required />
+          <input
+            type="text"
+            class="form-control"
+            v-model="piso"
+            placeholder="piso"
+            required
+          />
           <label for="piso">Piso</label>
         </div>
         <div class="form-floating mb-3">
@@ -93,14 +100,20 @@ function goBack() {
           <label for="indicaciones">Indicaciones</label>
         </div>
         <div class="form-floating mb-3">
-          <input type="text" class="form-control" v-model="estado" placeholder="estado" required />
-          <label for="estado">Ciudad</label>
+          <input
+            type="text"
+            class="form-control"
+            v-model="estado"
+            placeholder="estado"
+            required
+          />
+          <label for="estado">Estado</label>
         </div>
-
+        
         <div class="form-floating mb-3">
           <select v-model="idCliente" class="form-select">
             <option v-for="cliente in clientes" :value="cliente.id">
-              {{ cliente.nombreCliente }}
+              {{ cliente.nombreCompleto }}
             </option>
           </select>
           <label for="cliente">Nombre del Cliente</label>

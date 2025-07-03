@@ -25,36 +25,25 @@
           <img src="@/assets/img/gallery/gallery-3.jpg" class="d-block w-100" alt="..." />
         </div>
       </div>
-      <button
-        class="carousel-control-prev"
-        type="button"
-        data-bs-target="#carouselExampleControls"
-        data-bs-slide="prev"
-      >
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+        data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
       </button>
-      <button
-        class="carousel-control-next"
-        type="button"
-        data-bs-target="#carouselExampleControls"
-        data-bs-slide="next"
-      >
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+        data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
       </button>
     </div>
   </section>
 
-  <section class="about-section section-padding" id="section_3">
+  <section class="about-section section-padding" id="section_3" >
     <div class="container">
       <div class="row">
-        <div
-          class="col-lg-6 col-12 mb-2 mb-lg-0 d-flex align-items-center"
-          style="text-align: justify"
-        >
+        <div class="col-lg-6 col-12 mb-2 mb-lg-0 d-flex align-items-center" style="text-align: justify">
           <div class="services-info">
-            <h2 class="text-white mb-4">Historia</h2>
+            <h2 class="text-white mb-4" style="font-family: 'Pacifico', cursive;">Historia</h2>
 
             <p class="text-white">
               Había una vez un chef apasionado llamado Miguel, cuyo sueño siempre fue compartir su
@@ -80,9 +69,9 @@
         </div>
 
         <div class="col-lg-6 col-12">
-          <div class="about-text-wrap">
+          <div class="about-text-wrap" style="font-family: 'Pacifico', cursive;">
             <img src="@/assets/images/querico.jpg" alt="Image" class="img-fluid" />
-            <span class="date" style="color: white">Dic. 12, 2023</span>
+            <span class="date" style="color: white">July 3rd, 2025</span>
           </div>
         </div>
       </div>
@@ -93,7 +82,7 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-12 text-center">
-          <h2 class="mb-4">Restaurante</h2>
+          <h2 class="mb-4" >Restaurante</h2>
         </div>
 
         <div class="col-lg-5 col-12">
@@ -119,59 +108,27 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-12 mx-auto">
-          <h2 class="text-center mb-4">Ubicación</h2>
-
+          <h2 class="text-center mb-4" style="font-family: 'Pacifico', cursive;">Ubicación</h2>
           <nav class="d-flex justify-content-center">
-            <div
-              class="nav nav-tabs align-items-baseline justify-content-center"
-              id="nav-tab"
-              role="tablist"
-            >
-              <button
-                class="nav-link"
-                id="nav-ContactMap-tab"
-                data-bs-toggle="tab"
-                data-bs-target="#nav-ContactMap"
-                type="button"
-                role="tab"
-                aria-controls="nav-ContactMap"
-                aria-selected="false"
-              >
-                <h5>Google Maps</h5>
+            <div class="nav nav-tabs align-items-baseline justify-content-center" id="nav-tab" role="tablist">
+              <button class="nav-link" id="nav-ContactMap-tab" data-bs-toggle="tab" data-bs-target="#nav-ContactMap"
+                type="button" role="tab" aria-controls="nav-ContactMap" aria-selected="false">
+                <h5 style="font-family: 'Pacifico', cursive;">Google Maps</h5>
               </button>
             </div>
           </nav>
 
           <div class="tab-content shadow-lg mt-5" id="nav-tabContent">
-            <div
-              class="tab-pane fade show active"
-              id="nav-ContactForm"
-              role="tabpanel"
-              aria-labelledby="nav-ContactForm-tab"
-            >
-              <form
-                class="custom-form contact-form mb-5 mb-lg-0"
-                action="#"
-                method="post"
-                role="form"
-              ></form>
+            <div class="tab-pane fade show active" id="nav-ContactForm" role="tabpanel"
+              aria-labelledby="nav-ContactForm-tab">
+              <form class="custom-form contact-form mb-5 mb-lg-0" action="#" method="post" role="form"></form>
             </div>
 
-            <div
-              class="tab-pane fade"
-              id="nav-ContactMap"
-              role="tabpanel"
-              aria-labelledby="nav-ContactMap-tab"
-            >
-              <iframe
-                class="google-map"
+            <div class="tab-pane fade" id="nav-ContactMap" role="tabpanel" aria-labelledby="nav-ContactMap-tab">
+              <iframe class="google-map"
                 src="https://www.google.com/maps/d/embed?mid=1uMQSDBuP3OdywsVH-A5B-cmEngY&hl=es&ehbc=2E312F"
-                width="100%"
-                height="450"
-                style="border: 0"
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-              ></iframe>
+                width="100%" height="450" style="border: 0" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
               <!-- You can easily copy the embed code from Google Maps -> Share -> Embed a map // -->
             </div>
           </div>

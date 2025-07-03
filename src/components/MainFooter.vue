@@ -3,8 +3,8 @@
     <div class="site-footer-top">
       <div class="container">
         <div class="row">
-          <div class="col-lg-6 col-12">
-            <h2 class="text-white mb-lg-0">QUE RICO!</h2>
+          <div class="col-lg-6 col-12" style="font-family: 'Pacifico', cursive;">
+            <h2 class="text-white mb-lg-0">QUE RIQUITO!</h2>
           </div>
 
           <div class="col-lg-6 col-12 d-flex justify-content-lg-end align-items-center">
@@ -44,10 +44,10 @@
       </div>
     </div>
 
-    <div class="container">
+    <div class="container" style="font-family: 'Pacifico', cursive;">
       <div class="row">
         <div class="col-lg-6 col-12 mb-4 pb-2">
-          <h5 class="site-footer-title mb-3">Caracteristicas de QUE RICO!</h5>
+          <h5 class="site-footer-title mb-3">Caracteristicas de QUE RIQUITO!</h5>
 
           <ul class="site-footer-links">
             <li class="site-footer-link-item">
@@ -95,10 +95,10 @@
       </div>
     </div>
     <div class="site-footer-bottom">
-      <div class="container">
+      <div class="container" style="font-family: 'Pacifico', cursive;">
         <div class="row">
           <div class="col-lg-3 col-12 mt-5">
-<p class="copyright-text">Copyright © 2025 Daniel - Amada - Jhojan</p>
+            <p class="copyright-text">Copyright © 2025 Amanda - Jhojan</p>
           </div>
         </div>
       </div>

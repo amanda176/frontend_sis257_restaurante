@@ -11,33 +11,22 @@ const authStore = useAuthStore()
       <div class="col-lg-12 col-12 d-flex flex-wrap">
         <p class="d-flex me-4 mb-0">
           <i class="bi-person custom-icon me-2" style="color: #e49e48"></i>
-          <strong style="color: #e49e48"
-            >Bienvenido al área de administración del restaurante QUE
-            RICO!</strong
-          >
+          <strong style="color: #e49e48; font-family: 'Pacifico', cursive;">
+            Bienvenido al área de administración del restaurante QUE RIQUITO!
+          </strong>
         </p>
       </div>
     </div>
   </header>
-  <nav
-    class="navbar navbar-expand-lg"
-    :style="'background-color:' + (location.path != '/' ? 'black ' : '')"
-  >
+  <nav class="navbar navbar-expand-lg" :style="'background-color:' + (location.path != '/' ? 'black ' : '')">
     <div class="mx-5">
       <RouterLink v-if="!authStore.token" to="/login" class="btn custom-btn d-lg-none ms-auto me-4">
         Iniciar Sesión
       </RouterLink>
       <a v-else @click="authStore.logout()" class="btn custom-btn d-lg-none ms-auto me-4">Salir</a>
 
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
@@ -63,22 +52,12 @@ const authStore = useAuthStore()
             </li>
           </slot>
         </ul>
-        <RouterLink
-          v-if="!authStore.token"
-          to="/login"
-          class="btn custom-btn d-lg-block d-none custom-link"
-          style="color: white"
-        >
+        <RouterLink v-if="!authStore.token" to="/login" class="btn custom-btn d-lg-block d-none custom-link"
+          style="color: white">
           Iniciar Sesión
         </RouterLink>
 
-        <a
-          v-else
-          @click="authStore.logout()"
-          class="btn custom-btn d-lg-block d-none"
-          style="color: white"
-          >Salir</a
-        >
+        <a v-else @click="authStore.logout()" class="btn custom-btn d-lg-block d-none" style="color: white">Salir</a>
       </div>
     </div>
   </nav>

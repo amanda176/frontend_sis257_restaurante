@@ -47,7 +47,7 @@ onMounted(() => {
                   <li class="breadcrumb-item">
                     <RouterLink to="/">Inicio</RouterLink>
                   </li>
-                  <li class="breadcrumb-item active" aria-current="page">Categoria</li>
+                  <li class="breadcrumb-item active" aria-current="page">Clientes</li>
                 </ol>
               </nav>
               <h2 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">
@@ -55,7 +55,7 @@ onMounted(() => {
               </h2>
               <div class="col-12"></div>
             </div>
-            <RouterLink to="/categoriaPlatillos/crear">Crear Nueva Categoria </RouterLink>
+            <RouterLink to="/categoriaPlatillos/crear">Crear Nueva Cliente </RouterLink>
           </div>
         </div>
       </div>

@@ -38,7 +38,7 @@
     </div>
   </section>
 
-  <section class="about-section section-padding" id="section_3" >
+  <section class="about-section section-padding" id="section_3" style="background-color: #A41E25">
     <div class="container">
       <div class="row">
         <div class="col-lg-6 col-12 mb-2 mb-lg-0 d-flex align-items-center" style="text-align: justify">
@@ -158,8 +158,8 @@
     </div>
     <!-- Team End -->
   </section>
-  <section class="artists-section section-padding" id="section_4">
-    <div class="container">
+  <section class="artists-section section-padding" id="section_4" >
+    <div class="container" style="background-color: #A41E25">
       <div class="row justify-content-center">
         <div class="col-12 text-center">
           <h2 class="mb-4" style="font-family: 'Pacifico', cursive;" >Restaurante</h2>
@@ -184,7 +184,7 @@
     </div>
   </section>
 
-  <section class="contact-section section-padding" id="section_6" style="background-color: #704010">
+  <section class="contact-section section-padding" id="section_6" style="background-color: #A41E25">
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-12 mx-auto">

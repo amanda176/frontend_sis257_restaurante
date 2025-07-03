@@ -48,15 +48,15 @@ onMounted(() => {
                   <li class="breadcrumb-item">
                     <RouterLink to="/">Inicio</RouterLink>
                   </li>
-                  <li class="breadcrumb-item active" aria-current="page">Categoria</li>
+                  <li class="breadcrumb-item active" aria-current="page">Empleado</li>
                 </ol>
               </nav>
               <h2 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">
-                Lista de Clientes
+                Lista de Empleados
               </h2>
               <div class="col-12"></div>
             </div>
-            <RouterLink to="/clientes/crear">Crear Nueva Cliente </RouterLink>
+            <RouterLink to="/clientes/crear">Crear Nueva Empleado </RouterLink>
           </div>
         </div>
       </div>
